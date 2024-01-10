@@ -1,6 +1,6 @@
 {
   "version": "0.0.1-beta.1",
-  "packages": ["abi", "contracts", "spec"],
+  "packages": ["abi", "contracts"],
   "command": {
     "publish": {
       "forcePublish": "*",
