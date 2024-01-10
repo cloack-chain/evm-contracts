@@ -5,6 +5,7 @@
   "scripts": {
     "download:snark-artifacts": "rimraf snark-artifacts && ts-node scripts/download-snark-artifacts.ts 20",
     "lerna-publish": "yarn build && lerna publish && lerna run tsc-clean",
+    "lerna-publish:public": "yarn build && lerna publish --no-private && lerna run tsc-clean",
     "build": "hardhat compile && forge build && lerna run tsc",
     "prepare": "husky install",
     "prettier": "prettier --write --plugin=prettier-plugin-solidity --plugin=@trivago/prettier-plugin-sort-imports .",
@@ -14,7 +15,18 @@
     "deploy:cloackchain": "hardhat deploy:cloackchain",
     "verify:cloackchain": "hardhat verify:cloackchain",
     "deploy:cloackchain-semaphore": "hardhat deploy:cloackchain-semaphore",
-    "verify:cloackchain-semaphore": "hardhat verify:cloackchain-semaphore"
+    "verify:cloackchain-semaphore": "hardhat verify:cloackchain-semaphore",
+    "versionup": "lerna version --conventional-commits --no-git-tag-version",
+    "versionup:patch": "lerna version patch --conventional-commits --no-git-tag-version",
+    "versionup:minor": "lerna version minor --conventional-commits --no-git-tag-version",
+    "versionup:major": "lerna version major --conventional-commits --no-git-tag-version",
+    "postversionup": "npm run commit-version",
+    "postversionup:patch": "npm run commit-version",
+    "postversionup:minor": "npm run commit-version",
+    "postversionup:major": "npm run commit-version",
+    "commit-version": "git add . && git commit -m \"chore(release): publish `node -p 'require(\"./lerna.json\").version'`\"",
+    "release": "lerna publish from-package",
+    "release:canary": "lerna publish --canary --preid next --dist-tag next --force-publish='*' --no-push --no-git-tag-version --yes"
   },
   "devDependencies": {
     "@cloack-chain/evm-contracts": "link:contracts",

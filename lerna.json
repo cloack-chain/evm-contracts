@@ -3,7 +3,8 @@
   "packages": ["abi", "contracts", "spec"],
   "command": {
     "publish": {
-      "forcePublish": "*"
+      "forcePublish": "*",
+      "registry": "https://registry.npmjs.org"
     }
   }
 }
