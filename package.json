@@ -2,6 +2,10 @@
   "name": "root",
   "version": "0.0.1.beta.1",
   "license": "Apache-2.0",
+  "workspaces": [
+    "abi",
+    "contracts"
+  ],
   "scripts": {
     "download:snark-artifacts": "rimraf snark-artifacts && ts-node scripts/download-snark-artifacts.ts 20",
     "lerna-publish": "yarn build && lerna publish && lerna run tsc-clean",
