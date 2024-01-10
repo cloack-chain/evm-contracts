@@ -1,6 +1,6 @@
 {
   "name": "root",
-  "version": "1.0.0",
+  "version": "0.0.1.beta.1",
   "license": "Apache-2.0",
   "scripts": {
     "download:snark-artifacts": "rimraf snark-artifacts && ts-node scripts/download-snark-artifacts.ts 20",

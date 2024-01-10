@@ -46,6 +46,10 @@ yarn upgrade-dependencies
 ```
 
 ### Testing
+Before testing, you need to download snark-artifacts
+```
+yarn download:snark-artifacts
+```
 
 Test contracts with Hardhat, Foundry and generate gas report using `hardhat-gas-reporter`:
 
