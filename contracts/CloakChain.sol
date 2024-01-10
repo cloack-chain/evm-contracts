@@ -5,7 +5,7 @@ pragma solidity ^0.8.23;
 import { ICloakChain } from "./interfaces/ICloakChain.sol";
 import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
 
-/// @title Bandada
+/// @title CloakChain
 /// @dev This contract is used to save the groups fingerprints.
 contract CloakChain is ICloakChain, Ownable {
     /// @dev See {ICloakChain-groups}.

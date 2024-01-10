@@ -10,10 +10,11 @@ task('deploy:cloackchain', 'Deploy a CloakChain contract')
     const contract = await ContractFactory.deploy();
 
     await contract.waitForDeployment();
+    const contractAddress = await contract.getAddress();
 
     if (logs) {
       console.info(
-        `CloakChain contract has been deployed to: ${contract.address}`,
+        `CloakChain contract has been deployed to: ${contractAddress}`,
       );
     }
 

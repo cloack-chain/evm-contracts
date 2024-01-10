@@ -12,6 +12,12 @@ It consists of the following packages:
 | `@cloack-chain/spec`      | portable tests which may be run against third-party implementations of core contracts | [📖](./spec/README.md)      |
 
 ### Contracts
+| **Contract**         | **Goerli**                                 |
+|----------------------|--------------------------------------------|
+| CloackChain          | 0x8C331119Af77BF13A595F0B954d87b2b2330f83b |
+| CloackChainSemaphore | 0xB2f4B4440A6f146E146DCe5e48f2F549F99415cA |
+| Pairing              | 0xE5f751Be2bce1FA9a22E9A5747DD466EfC4f2cF0 |
+| SemaphoreVerifier    | 0x676809EffBDe3d94D3dAE734375695059BE2681a |
 
 ## Development
 
@@ -59,4 +65,11 @@ Publish packages via Lerna:
 
 ```bash
 yarn lerna-publish
+```
+## Deployments
+```
+yarn deploy:cloackchain --network goerli
+yarn verify:cloackchain --address '0x8C331119Af77BF13A595F0B954d87b2b2330f83b'
+yarn deploy:cloackchain-semaphore --network goerli --cloackchain '0x8C331119Af77BF13A595F0B954d87b2b2330f83b'
+npx hardhat verify --network goerli 0xB2f4B4440A6f146E146DCe5e48f2F549F99415cA --constructor-args ./tasks/cloackchain-semaphore-arguments.js
 ```

@@ -10,7 +10,7 @@ task('deploy:cloackchain-semaphore', 'Deploy a CloakChainSemaphore contract')
     types.string,
   )
   .addOptionalParam(
-    'semaphoreVerifier',
+    'verifier',
     'SemaphoreVerifier contract address',
     undefined,
     types.string,
@@ -20,7 +20,7 @@ task('deploy:cloackchain-semaphore', 'Deploy a CloakChainSemaphore contract')
       {
         logs,
         cloackchain: cloackchainAddress,
-        semaphoreVerifier: semaphoreVerifierAddress,
+        verifier: semaphoreVerifierAddress,
       },
       { ethers, run },
     ): Promise<Contract> => {

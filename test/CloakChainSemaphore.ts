@@ -15,7 +15,7 @@ import {
   verifyProof,
 } from '@semaphore-protocol/proof';
 import { expect } from 'chai';
-import { ethers, run } from 'hardhat';
+import { ethers } from 'hardhat';
 
 describe('CloakChainSemaphore', () => {
   let owner: SignerWithAddress;
@@ -128,6 +128,18 @@ describe('CloakChainSemaphore', () => {
         );
     });
     it('Should not verify the same proof for an off-chain group twice', async () => {
+      instance.verifyProof(
+        groupId,
+        group.root,
+        group.depth,
+        signal,
+        fullProof.nullifierHash,
+        group.root,
+        fullProof.proof,
+      );
+
+      // console.log('transaction', await transaction);
+
       const transaction = instance.verifyProof(
         groupId,
         group.root,
@@ -138,19 +150,7 @@ describe('CloakChainSemaphore', () => {
         fullProof.proof,
       );
 
-      console.log('transaction', await transaction);
-
-      const transaction2 = instance.verifyProof(
-        groupId,
-        group.root,
-        group.depth,
-        signal,
-        fullProof.nullifierHash,
-        group.root,
-        fullProof.proof,
-      );
-
-      await expect(transaction2).to.be.revertedWithCustomError(
+      await expect(transaction).to.be.revertedWithCustomError(
         instance,
         'CloakChainSemaphore__YouAreUsingTheSameNullifierTwice',
       );

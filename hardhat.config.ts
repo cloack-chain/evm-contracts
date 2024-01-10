@@ -1,12 +1,17 @@
+import './tasks/deploy-cloackchain';
+import './tasks/deploy-cloackchain-semaphore';
+import './tasks/verify-cloackchain';
+import './tasks/verify-cloackchain-semaphore';
 import '@nomicfoundation/hardhat-foundry';
 import '@nomicfoundation/hardhat-toolbox';
 import { config as dotEnvConfig } from 'dotenv';
+import 'hardhat-abi-exporter';
+import 'hardhat-contract-sizer';
+import 'hardhat-linearization';
+import 'hardhat-spdx-license-identifier';
 import { HardhatUserConfig } from 'hardhat/config';
 import { NetworksUserConfig } from 'hardhat/types';
-import "./tasks/deploy-cloackchain"
-import "./tasks/verify-cloackchain"
-import "./tasks/deploy-cloackchain-semaphore"
-import "./tasks/verify-cloackchain-semaphore"
+import 'solidity-coverage';
 
 dotEnvConfig();
 
@@ -53,20 +58,24 @@ const hardhatConfig: HardhatUserConfig = {
     },
     ...getNetworks(),
   },
-  // dependencyCompiler: {
-  //   paths: [
-  //       "node_modules/@semaphore-protocol/contracts/base/Pairing.sol",
-  //       "node_modules/@semaphore-protocol/contracts/base/SemaphoreVerifier.sol",
-  //   ]
-  // },
+
+  abiExporter: {
+    runOnCompile: true,
+    clear: true,
+    flat: true,
+    except: ['.*Mock$'],
+  },
+
   gasReporter: {
     currency: 'USD',
     enabled: process.env.REPORT_GAS === 'true',
     coinmarketcap: process.env.COINMARKETCAP_API_KEY,
   },
+
   typechain: {
     target: 'ethers-v6',
   },
+
   etherscan: {
     apiKey: process.env.ETHERSCAN_API_KEY,
   },
